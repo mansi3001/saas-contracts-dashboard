@@ -4,7 +4,7 @@ A modern React-based SaaS application for managing contracts with AI-powered ins
 
 ## 🚀 Live Demo
 
-[View Live Demo]()
+[View Live Demo](https://saas-contracts-dashboard-mansi.netlify.app/login)
 
 ## 📋 Features
 
@@ -119,10 +119,9 @@ src/
 
 ## 🚀 Deployment
 
-Ready for deployment to:
-- Vercel (recommended)
-- Netlify
-- GitHub Pages
+**Live Demo**: [https://saas-contracts-dashboard-mansi.netlify.app/login](https://saas-contracts-dashboard-mansi.netlify.app/login)
+
+Deployed on Netlify. To deploy elsewhere:
 
 ```bash
 npm run build
