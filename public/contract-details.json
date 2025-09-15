@@ -8,47 +8,191 @@
     "status": "Active",
     "risk": "Medium",
     "clauses": [
-      {
-        "title": "Termination",
-        "summary": "90 days notice period required for contract termination.",
-        "confidence": 0.82
-      },
-      {
-        "title": "Liability Cap",
-        "summary": "Total liability limited to 12 months' fees.",
-        "confidence": 0.87
-      },
-      {
-        "title": "Data Protection",
-        "summary": "GDPR compliance required for all data processing.",
-        "confidence": 0.91
-      }
+      {"title": "Termination", "summary": "90 days notice period required for contract termination.", "confidence": 0.82},
+      {"title": "Liability Cap", "summary": "Total liability limited to 12 months' fees.", "confidence": 0.87},
+      {"title": "Data Protection", "summary": "GDPR compliance required for all data processing.", "confidence": 0.91}
     ],
     "insights": [
-      {
-        "risk": "High",
-        "message": "Liability cap excludes data breach costs."
-      },
-      {
-        "risk": "Medium",
-        "message": "Renewal auto-renews unless cancelled 60 days before expiry."
-      },
-      {
-        "risk": "Low",
-        "message": "Standard termination clause with reasonable notice period."
-      }
+      {"risk": "High", "message": "Liability cap excludes data breach costs."},
+      {"risk": "Medium", "message": "Renewal auto-renews unless cancelled 60 days before expiry."}
     ],
     "evidence": [
-      {
-        "source": "Section 12.2",
-        "snippet": "Total liability limited to 12 months' fees.",
-        "relevance": 0.91
-      },
-      {
-        "source": "Section 8.1",
-        "snippet": "Either party may terminate with 90 days written notice.",
-        "relevance": 0.85
-      }
+      {"source": "Section 12.2", "snippet": "Total liability limited to 12 months' fees.", "relevance": 0.91},
+      {"source": "Section 8.1", "snippet": "Either party may terminate with 90 days written notice.", "relevance": 0.85}
+    ]
+  },
+  "c2": {
+    "id": "c2",
+    "name": "Network Services Agreement",
+    "parties": "TelNet & ABC Corp",
+    "start": "2024-01-01",
+    "expiry": "2025-10-10",
+    "status": "Renewal Due",
+    "risk": "High",
+    "clauses": [
+      {"title": "Service Level Agreement", "summary": "99.9% uptime guarantee with penalties for downtime.", "confidence": 0.95},
+      {"title": "Termination for Cause", "summary": "Immediate termination allowed for material breach.", "confidence": 0.88}
+    ],
+    "insights": [
+      {"risk": "High", "message": "No liability cap for service interruptions."},
+      {"risk": "Medium", "message": "Auto-renewal clause requires 90-day notice."}
+    ],
+    "evidence": [
+      {"source": "Section 3.1", "snippet": "Service availability shall be maintained at 99.9% uptime.", "relevance": 0.93}
+    ]
+  },
+  "c3": {
+    "id": "c3",
+    "name": "Cloud Infrastructure Contract",
+    "parties": "AWS & TechCorp",
+    "start": "2022-06-15",
+    "expiry": "2025-06-15",
+    "status": "Expired",
+    "risk": "Low",
+    "clauses": [
+      {"title": "Data Security", "summary": "AWS responsible for infrastructure security, customer for data.", "confidence": 0.92},
+      {"title": "Usage Limits", "summary": "Monthly usage caps with overage charges apply.", "confidence": 0.89}
+    ],
+    "insights": [
+      {"risk": "Low", "message": "Standard AWS terms with clear responsibility matrix."}
+    ],
+    "evidence": [
+      {"source": "Section 7.2", "snippet": "Customer retains control and responsibility for guest operating systems.", "relevance": 0.87}
+    ]
+  },
+  "c4": {
+    "id": "c4",
+    "name": "Software License Agreement",
+    "parties": "Adobe & CreativeCorp",
+    "start": "2024-03-20",
+    "expiry": "2026-03-20",
+    "status": "Active",
+    "risk": "Low",
+    "clauses": [
+      {"title": "License Grant", "summary": "Non-exclusive license for internal business use only.", "confidence": 0.94},
+      {"title": "Usage Restrictions", "summary": "Prohibited from reverse engineering or redistribution.", "confidence": 0.90}
+    ],
+    "insights": [
+      {"risk": "Low", "message": "Standard software license with clear usage terms."}
+    ],
+    "evidence": [
+      {"source": "Section 2.1", "snippet": "License is granted for internal business purposes only.", "relevance": 0.88}
+    ]
+  },
+  "c5": {
+    "id": "c5",
+    "name": "Data Processing Agreement",
+    "parties": "Salesforce & DataCorp",
+    "start": "2023-08-30",
+    "expiry": "2025-08-30",
+    "status": "Active",
+    "risk": "High",
+    "clauses": [
+      {"title": "Data Processing", "summary": "GDPR compliant data processing with strict security measures.", "confidence": 0.96},
+      {"title": "Data Breach Notification", "summary": "72-hour breach notification requirement.", "confidence": 0.93}
+    ],
+    "insights": [
+      {"risk": "High", "message": "Unlimited liability for data breaches."},
+      {"risk": "Medium", "message": "Cross-border data transfer restrictions apply."}
+    ],
+    "evidence": [
+      {"source": "Section 5.3", "snippet": "Data processor shall notify controller within 72 hours of breach.", "relevance": 0.95}
+    ]
+  },
+  "c6": {
+    "id": "c6",
+    "name": "Enterprise Support Contract",
+    "parties": "Oracle & FinanceCorp",
+    "start": "2023-12-15",
+    "expiry": "2025-12-15",
+    "status": "Renewal Due",
+    "risk": "Medium",
+    "clauses": [
+      {"title": "Support Level", "summary": "24/7 premium support with 4-hour response time.", "confidence": 0.91},
+      {"title": "Escalation Process", "summary": "Three-tier escalation with direct access to engineering.", "confidence": 0.85}
+    ],
+    "insights": [
+      {"risk": "Medium", "message": "Support costs increase 15% annually."}
+    ],
+    "evidence": [
+      {"source": "Section 4.2", "snippet": "Response time guaranteed within 4 hours for critical issues.", "relevance": 0.89}
+    ]
+  },
+  "c7": {
+    "id": "c7",
+    "name": "SaaS Subscription Agreement",
+    "parties": "Slack & TeamCorp",
+    "start": "2024-05-22",
+    "expiry": "2025-05-22",
+    "status": "Active",
+    "risk": "Low",
+    "clauses": [
+      {"title": "Subscription Terms", "summary": "Monthly subscription with annual commitment discount.", "confidence": 0.88},
+      {"title": "Data Export", "summary": "Full data export available upon termination.", "confidence": 0.92}
+    ],
+    "insights": [
+      {"risk": "Low", "message": "Standard SaaS terms with favorable data portability."}
+    ],
+    "evidence": [
+      {"source": "Section 6.1", "snippet": "Customer data remains accessible for 30 days post-termination.", "relevance": 0.86}
+    ]
+  },
+  "c8": {
+    "id": "c8",
+    "name": "Security Services Contract",
+    "parties": "CrowdStrike & SecureCorp",
+    "start": "2023-03-10",
+    "expiry": "2025-03-10",
+    "status": "Expired",
+    "risk": "High",
+    "clauses": [
+      {"title": "Security Monitoring", "summary": "24/7 endpoint detection and response monitoring.", "confidence": 0.97},
+      {"title": "Incident Response", "summary": "Immediate response to security incidents with forensics.", "confidence": 0.94}
+    ],
+    "insights": [
+      {"risk": "High", "message": "No liability coverage for undetected threats."},
+      {"risk": "High", "message": "Contract expired - security coverage at risk."}
+    ],
+    "evidence": [
+      {"source": "Section 3.4", "snippet": "Provider liability limited to service fees paid.", "relevance": 0.92}
+    ]
+  },
+  "c9": {
+    "id": "c9",
+    "name": "Marketing Automation License",
+    "parties": "HubSpot & MarketCorp",
+    "start": "2024-11-30",
+    "expiry": "2025-11-30",
+    "status": "Active",
+    "risk": "Low",
+    "clauses": [
+      {"title": "Contact Limits", "summary": "Licensed for up to 10,000 marketing contacts.", "confidence": 0.89},
+      {"title": "Integration Rights", "summary": "API access for third-party integrations included.", "confidence": 0.91}
+    ],
+    "insights": [
+      {"risk": "Low", "message": "Standard marketing automation terms with scalable pricing."}
+    ],
+    "evidence": [
+      {"source": "Section 2.3", "snippet": "Contact database limited to 10,000 active contacts.", "relevance": 0.87}
+    ]
+  },
+  "c10": {
+    "id": "c10",
+    "name": "Database Management Agreement",
+    "parties": "MongoDB & DataTech",
+    "start": "2024-01-15",
+    "expiry": "2025-01-15",
+    "status": "Renewal Due",
+    "risk": "Medium",
+    "clauses": [
+      {"title": "Performance SLA", "summary": "99.95% uptime with performance guarantees.", "confidence": 0.93},
+      {"title": "Backup & Recovery", "summary": "Automated daily backups with point-in-time recovery.", "confidence": 0.96}
+    ],
+    "insights": [
+      {"risk": "Medium", "message": "Renewal pricing increases 20% from current rate."}
+    ],
+    "evidence": [
+      {"source": "Section 5.1", "snippet": "Database availability guaranteed at 99.95% uptime.", "relevance": 0.94}
     ]
   }
 }
