@@ -2,7 +2,8 @@ from sqlalchemy import create_engine, Column, Integer, String, DateTime, Text, F
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker, relationship
 from sqlalchemy.dialects.postgresql import UUID
-from pgvector.sqlalchemy import Vector
+# from pgvector.sqlalchemy import Vector
+# Using TEXT for embeddings instead of Vector for deployment compatibility
 import uuid
 from datetime import datetime
 import os
@@ -50,7 +51,7 @@ class Chunk(Base):
     doc_id = Column(UUID(as_uuid=True), ForeignKey("documents.doc_id"), nullable=False)
     user_id = Column(UUID(as_uuid=True), ForeignKey("users.user_id"), nullable=False)
     text_chunk = Column(Text, nullable=False)
-    embedding = Column(Vector(4))  # 4-dimensional vector for mock embeddings
+    embedding = Column(Text)  # Store embeddings as JSON string for compatibility
     chunk_metadata = Column(Text)  # JSON string
     
     user = relationship("User", back_populates="chunks")

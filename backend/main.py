@@ -158,7 +158,7 @@ async def upload_file(
             doc_id=document.doc_id,
             user_id=current_user.user_id,
             text_chunk=chunk_data["text"],
-            embedding=chunk_data["embedding"],
+            embedding=json.dumps(chunk_data["embedding"]),  # Store as JSON string
             chunk_metadata=json.dumps(chunk_data["metadata"])
         )
         db.add(chunk)
@@ -267,8 +267,11 @@ async def ask_question(
     # Calculate similarity scores
     chunk_scores = []
     for chunk in chunks:
-        chunk_embedding = np.array(chunk.embedding)
-        similarity = cosine_similarity([query_embedding], [chunk_embedding])[0][0]
+        try:
+            chunk_embedding = np.array(json.loads(chunk.embedding))
+            similarity = cosine_similarity([query_embedding], [chunk_embedding])[0][0]
+        except:
+            similarity = 0.5  # Default similarity if parsing fails
         chunk_scores.append((chunk, similarity))
     
     # Sort by similarity and get top 3
