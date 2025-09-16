@@ -88,7 +88,12 @@ def extract_text_from_file(file: UploadFile) -> str:
 
 @app.on_event("startup")
 async def startup_event():
-    create_tables()
+    try:
+        create_tables()
+        print("✓ Database tables created successfully")
+    except Exception as e:
+        print(f"⚠ Database connection failed: {e}")
+        print("App will continue without database initialization")
 
 @app.post("/signup", response_model=Token)
 async def signup(user: UserCreate, db: Session = Depends(get_db)):
