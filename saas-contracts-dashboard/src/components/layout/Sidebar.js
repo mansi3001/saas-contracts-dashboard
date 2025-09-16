@@ -1,9 +1,10 @@
 import { NavLink } from 'react-router-dom';
-import { FileText, BarChart3, FileBarChart, Settings, Lock } from 'lucide-react';
+import { FileText, BarChart3, FileBarChart, Settings, Lock, MessageSquare } from 'lucide-react';
 
 const Sidebar = ({ isOpen, onClose }) => {
   const navigation = [
     { name: 'Contracts', href: '/dashboard', icon: FileText },
+    { name: 'Query', href: '/query', icon: MessageSquare },
     { name: 'Insights', href: '/insights', icon: BarChart3 },
     { name: 'Reports', href: '/reports', icon: FileBarChart },
     { name: 'Settings', href: '/settings', icon: Settings },

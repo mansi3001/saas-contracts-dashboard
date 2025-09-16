@@ -1,0 +1,40 @@
+MUTUAL NON-DISCLOSURE AGREEMENT
+
+This Mutual NDA is executed on May 18, 2024, between BioTech Innovations ("First Party") and Pharma Research Group ("Second Party").
+
+1. CONFIDENTIAL INFORMATION
+Includes research data, clinical trial results, patent applications, manufacturing processes, and regulatory submissions.
+
+2. MUTUAL OBLIGATIONS
+Both parties agree to:
+- Protect confidential information with same care as own
+- Use information only for joint research evaluation
+- Limit access to need-to-know employees
+- Implement security measures for data protection
+
+3. TERM
+Effective for 5 years from execution, expiring May 18, 2029.
+
+4. PERMITTED DISCLOSURES
+Exceptions include:
+- Information already public
+- Independently developed without breach
+- Required by FDA or regulatory bodies
+- Previously known to receiving party
+
+5. REMEDIES
+Breach may result in immediate injunctive relief plus damages of $500,000 minimum.
+
+6. DATA HANDLING
+All electronic data must be encrypted. Physical documents stored in locked facilities.
+
+7. EMPLOYEE OBLIGATIONS
+Parties ensure employees sign individual confidentiality agreements.
+
+8. GOVERNING LAW
+Delaware state law governs this Agreement.
+
+Executed by:
+BioTech Innovations
+Pharma Research Group
+Date: May 18, 2024

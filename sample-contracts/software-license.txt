@@ -1,0 +1,43 @@
+ENTERPRISE SOFTWARE LICENSE
+
+This Enterprise License Agreement is made on August 14, 2024, between AI Analytics Suite Inc. ("Licensor") and Manufacturing Giant Ltd. ("Licensee").
+
+1. SOFTWARE GRANT
+Licensor grants enterprise license for AI Analytics Suite v3.0 including machine learning modules, predictive analytics, and dashboard tools.
+
+2. LICENSE DURATION
+License runs from September 1, 2024, to August 31, 2029, for 5 years with auto-renewal option.
+
+3. PRICING STRUCTURE
+Licensee pays $125,000 annually plus $2,500 per additional user beyond 500 users. Payment due quarterly.
+
+4. USAGE RIGHTS
+Licensee authorized to:
+- Deploy across unlimited manufacturing facilities
+- Integrate with existing ERP systems
+- Customize dashboards and reports
+- Train unlimited employees
+
+5. PROHIBITED ACTIVITIES
+Licensee cannot:
+- Resell or redistribute software
+- Access source code or algorithms
+- Use for competitor analysis services
+- Share login credentials externally
+
+6. PROFESSIONAL SERVICES
+Licensor provides implementation support, training, and 24/7 technical assistance included in license fee.
+
+7. SLA GUARANTEES
+99.9% uptime guarantee with service credits for downtime. Response time: 2 hours for critical issues.
+
+8. LIABILITY LIMITS
+Total liability capped at 24 months of license fees. No liability for business interruption or data loss.
+
+9. TERMINATION RIGHTS
+Either party may terminate with 120 days notice. Data export assistance provided for 90 days post-termination.
+
+Signed:
+AI Analytics Suite Inc.
+Manufacturing Giant Ltd.
+Date: August 14, 2024

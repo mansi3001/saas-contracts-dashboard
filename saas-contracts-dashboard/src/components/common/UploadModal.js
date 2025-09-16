@@ -1,6 +1,6 @@
 import { useState, useRef } from 'react';
 import { X, Upload, File, CheckCircle, AlertCircle, Loader } from 'lucide-react';
-import { api } from '../../services/api';
+import { contractsAPI } from '../../services/api';
 
 const UploadModal = ({ isOpen, onClose }) => {
   const [files, setFiles] = useState([]);
@@ -46,18 +46,11 @@ const UploadModal = ({ isOpen, onClose }) => {
         file,
         name: file.name,
         size: file.size,
-        status: isValidType ? 'pending' : 'error'
+        status: isValidType ? 'ready' : 'error'
       };
     });
     
     setFiles(prev => [...prev, ...fileObjects]);
-    
-    // Only upload valid files
-    fileObjects.forEach(fileObj => {
-      if (fileObj.status === 'pending') {
-        uploadFile(fileObj);
-      }
-    });
   };
 
   const uploadFile = async (fileObj) => {
@@ -66,7 +59,7 @@ const UploadModal = ({ isOpen, onClose }) => {
     ));
 
     try {
-      await api.uploadFile(fileObj.file);
+      await contractsAPI.uploadContract(fileObj.file);
       setFiles(prev => prev.map(f => 
         f.id === fileObj.id ? { ...f, status: 'success' } : f
       ));
@@ -108,6 +101,8 @@ const UploadModal = ({ isOpen, onClose }) => {
         return 'Uploading...';
       case 'success':
         return 'Uploaded';
+      case 'ready':
+        return 'Ready to upload';
       case 'error':
         const fileExtension = '.' + fileName.split('.').pop().toLowerCase();
         const allowedTypes = ['.pdf', '.doc', '.docx', '.txt'];
@@ -209,15 +204,24 @@ const UploadModal = ({ isOpen, onClose }) => {
               Close
             </button>
             <button 
-              onClick={() => {
+              onClick={async () => {
+                // Upload all ready files
+                const readyFiles = files.filter(f => f.status === 'ready');
+                
+                for (const fileObj of readyFiles) {
+                  await uploadFile(fileObj);
+                }
+                
                 // Clear files and close modal
                 setFiles([]);
                 onClose();
+                // Force page refresh to show new contracts
+                window.location.reload();
               }}
               className="btn-primary"
-              disabled={files.some(f => f.status === 'uploading')}
+              disabled={files.some(f => f.status === 'uploading') || files.length === 0}
             >
-              Done
+              Upload & Done
             </button>
           </div>
         </div>

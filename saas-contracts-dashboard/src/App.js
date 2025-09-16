@@ -8,6 +8,7 @@ import { AuthProvider, useAuth } from "./context/AuthContext";
 import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
 import ContractDetail from "./pages/ContractDetail";
+import Query from "./pages/Query";
 import NotFound from "./pages/NotFound";
 import Layout from "./components/layout/Layout";
 
@@ -42,6 +43,14 @@ const AppRoutes = () => {
         element={
           <ProtectedRoute>
             <ContractDetail />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/query"
+        element={
+          <ProtectedRoute>
+            <Query />
           </ProtectedRoute>
         }
       />

@@ -9,7 +9,8 @@ const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
-  const { user, login } = useAuth();
+  const [isSignup, setIsSignup] = useState(false);
+  const { user, login, signup } = useAuth();
 
   if (user) {
     return <Navigate to="/dashboard" replace />;
@@ -20,7 +21,9 @@ const Login = () => {
     setError('');
     setLoading(true);
 
-    const result = await login(username, password);
+    const result = isSignup 
+      ? await signup(username, password)
+      : await login(username, password);
     
     if (!result.success) {
       setError(result.error);
@@ -36,8 +39,12 @@ const Login = () => {
           <div className="inline-flex items-center justify-center w-16 h-16 bg-primary-600 rounded-2xl mb-4">
             <Lock className="w-8 h-8 text-white" />
           </div>
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">Welcome Back</h1>
-          <p className="text-gray-600">Sign in to your SaaS Contracts Dashboard</p>
+          <h1 className="text-3xl font-bold text-gray-900 mb-2">
+            {isSignup ? 'Create Account' : 'Welcome Back'}
+          </h1>
+          <p className="text-gray-600">
+            {isSignup ? 'Sign up for your SaaS Contracts Dashboard' : 'Sign in to your SaaS Contracts Dashboard'}
+          </p>
         </div>
 
         {/* Login Form */}
@@ -98,14 +105,20 @@ const Login = () => {
               {loading ? (
                 <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
               ) : (
-                'Log In'
+                isSignup ? 'Sign Up' : 'Log In'
               )}
             </button>
           </form>
 
           <div className="mt-6 text-center">
             <p className="text-sm text-gray-600">
-              Demo credentials: Any username, password: <span className="font-mono bg-gray-100 px-2 py-1 rounded">test123</span>
+              {isSignup ? 'Already have an account?' : "Don't have an account?"} <button 
+                type="button" 
+                onClick={() => setIsSignup(!isSignup)} 
+                className="text-primary-600 hover:text-primary-700 font-medium"
+              >
+                {isSignup ? 'Log in' : 'Sign up'}
+              </button>
             </p>
           </div>
         </div>

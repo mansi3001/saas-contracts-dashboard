@@ -3,7 +3,7 @@ import { useParams, Link } from 'react-router-dom';
 import { ArrowLeft, Calendar, Users, AlertTriangle, CheckCircle, Info, Eye } from 'lucide-react';
 import Layout from '../components/layout/Layout';
 import StatusBadge from '../components/ui/StatusBadge';
-import { api } from '../services/api';
+import { contractsAPI } from '../services/api';
 
 const ContractDetail = () => {
   const { id } = useParams();
@@ -15,7 +15,7 @@ const ContractDetail = () => {
   const loadContractDetails = async () => {
     try {
       setLoading(true);
-      const data = await api.getContractDetails(id);
+      const data = await contractsAPI.getContractById(id);
       if (!data) {
         setError('Contract not found');
       } else {
@@ -91,7 +91,7 @@ const ContractDetail = () => {
               <ArrowLeft className="w-5 h-5" />
             </Link>
             <div>
-              <h1 className="text-2xl font-bold text-gray-900">{contract.name}</h1>
+              <h1 className="text-2xl font-bold text-gray-900">{contract.contract_name}</h1>
               <p className="text-gray-600">{contract.parties}</p>
             </div>
           </div>
@@ -111,7 +111,7 @@ const ContractDetail = () => {
               <Calendar className="w-8 h-8 text-blue-600 mb-2" />
               <div className="ml-3">
                 <p className="text-sm font-medium text-gray-600">Start Date</p>
-                <p className="text-lg font-semibold text-gray-900">{formatDate(contract.start)}</p>
+                <p className="text-lg font-semibold text-gray-900">{formatDate(contract.uploaded_on)}</p>
               </div>
             </div>
           </div>
@@ -120,7 +120,7 @@ const ContractDetail = () => {
               <Calendar className="w-8 h-8 text-red-600 mb-2" />
               <div className="ml-3">
                 <p className="text-sm font-medium text-gray-600">Expiry Date</p>
-                <p className="text-lg font-semibold text-gray-900">{formatDate(contract.expiry)}</p>
+                <p className="text-lg font-semibold text-gray-900">{formatDate(contract.expiry_date)}</p>
               </div>
             </div>
           </div>
@@ -141,7 +141,7 @@ const ContractDetail = () => {
               <div className="ml-3">
                 <p className="text-sm font-medium text-gray-600">Risk Score</p>
                 <div className="mt-1">
-                  <StatusBadge risk={contract.risk} />
+                  <StatusBadge risk={contract.risk_score} />
                 </div>
               </div>
             </div>
@@ -154,7 +154,7 @@ const ContractDetail = () => {
             <div className="card">
               <h2 className="text-xl font-semibold text-gray-900 mb-4">Contract Clauses</h2>
               <div className="space-y-4">
-                {contract.clauses.map((clause, index) => (
+                {(contract.clauses || []).map((clause, index) => (
                   <div key={index} className="border border-gray-200 rounded-lg p-4">
                     <div className="flex items-center justify-between mb-2">
                       <h3 className="font-medium text-gray-900">{clause.title}</h3>
@@ -164,16 +164,16 @@ const ContractDetail = () => {
                           <div className="w-16 bg-gray-200 rounded-full h-2">
                             <div
                               className="bg-primary-600 h-2 rounded-full"
-                              style={{ width: `${clause.confidence * 100}%` }}
+                              style={{ width: `${clause.confidence}%` }}
                             ></div>
                           </div>
                           <span className="ml-2 text-sm font-medium text-gray-900">
-                            {Math.round(clause.confidence * 100)}%
+                            {clause.confidence}%
                           </span>
                         </div>
                       </div>
                     </div>
-                    <p className="text-gray-600 text-sm">{clause.summary}</p>
+                    <p className="text-gray-600 text-sm">{clause.text}</p>
                   </div>
                 ))}
               </div>
@@ -185,14 +185,14 @@ const ContractDetail = () => {
             <div className="card">
               <h2 className="text-xl font-semibold text-gray-900 mb-4">AI Insights</h2>
               <div className="space-y-4">
-                {contract.insights.map((insight, index) => (
+                {(contract.insights || []).map((insight, index) => (
                   <div key={index} className="flex items-start space-x-3 p-4 border border-gray-200 rounded-lg">
                     {getRiskIcon(insight.risk)}
                     <div className="flex-1">
                       <div className="flex items-center space-x-2 mb-1">
-                        <StatusBadge risk={insight.risk} />
+                        <span className="text-sm font-medium text-gray-900">{insight.type}</span>
                       </div>
-                      <p className="text-gray-700 text-sm">{insight.message}</p>
+                      <p className="text-gray-700 text-sm">{insight.text}</p>
                     </div>
                   </div>
                 ))}
@@ -220,7 +220,7 @@ const ContractDetail = () => {
                 </div>
                 <div className="flex-1 overflow-y-auto p-6">
                   <div className="space-y-4">
-                    {contract.evidence.map((item, index) => (
+                    {(contract.evidence || []).map((item, index) => (
                       <div key={index} className="border border-gray-200 rounded-lg p-4">
                         <div className="flex items-center justify-between mb-2">
                           <span className="text-sm font-medium text-primary-600">{item.source}</span>

@@ -6,7 +6,7 @@ import SearchBar from '../components/ui/SearchBar';
 import FilterDropdown from '../components/ui/FilterDropdown';
 import StatusBadge from '../components/ui/StatusBadge';
 import UploadModal from '../components/common/UploadModal';
-import { api } from '../services/api';
+import { contractsAPI } from '../services/api';
 
 const Dashboard = () => {
   const [contracts, setContracts] = useState([]);
@@ -30,7 +30,7 @@ const Dashboard = () => {
 
     if (searchTerm) {
       filtered = filtered.filter(contract =>
-        contract.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        contract.contract_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
         contract.parties.toLowerCase().includes(searchTerm.toLowerCase())
       );
     }
@@ -54,7 +54,7 @@ const Dashboard = () => {
   const loadContracts = async () => {
     try {
       setLoading(true);
-      const data = await api.getContracts();
+      const data = await contractsAPI.getContracts();
       setContracts(data);
       setError('');
     } catch (err) {
@@ -232,7 +232,7 @@ const Dashboard = () => {
               <div className="ml-4">
                 <p className="text-sm font-medium text-gray-600">High Risk</p>
                 <p className="text-2xl font-bold text-gray-900">
-                  {contracts.filter(c => c.risk === 'High').length}
+                  {contracts.filter(c => c.risk_score === 'High').length}
                 </p>
               </div>
             </div>
@@ -349,23 +349,23 @@ const Dashboard = () => {
                       <tr key={contract.id} className="hover:bg-gray-50">
                         <td className="px-6 py-4 whitespace-nowrap">
                           <Link
-                            to={`/contract/${contract.id}`}
+                            to={`/contract/${contract.doc_id}`}
                             className="text-primary-600 hover:text-primary-900 font-medium"
                           >
-                            {contract.name}
+                            {contract.contract_name}
                           </Link>
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
                           {contract.parties}
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                          {formatDate(contract.expiry)}
+                          {formatDate(contract.expiry_date)}
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap">
                           <StatusBadge status={contract.status} />
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap">
-                          <StatusBadge risk={contract.risk} />
+                          <StatusBadge risk={contract.risk_score} />
                         </td>
                       </tr>
                     ))}
@@ -408,7 +408,10 @@ const Dashboard = () => {
         {/* Upload Modal */}
         <UploadModal 
           isOpen={showUploadModal} 
-          onClose={() => setShowUploadModal(false)} 
+          onClose={() => {
+            setShowUploadModal(false);
+            loadContracts(); // Refresh contracts list
+          }} 
         />
       </div>
     </Layout>

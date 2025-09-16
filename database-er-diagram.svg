@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="800" height="400" xmlns="http://www.w3.org/2000/svg">
+  <!-- White background -->
+  <rect width="800" height="400" fill="white"/>
+  
+  <defs>
+    <style>
+      .table-box { fill: #f8f9fa; stroke: #2563eb; stroke-width: 2; }
+      .table-header { fill: #2563eb; }
+      .table-text { font-family: Arial, sans-serif; font-size: 12px; }
+      .header-text { fill: white; font-weight: bold; }
+      .field-text { fill: #374151; }
+      .pk-text { fill: #dc2626; font-weight: bold; }
+      .fk-text { fill: #059669; }
+      .relationship-line { stroke: #6b7280; stroke-width: 2; }
+    </style>
+  </defs>
+  
+  <!-- Users Table -->
+  <rect x="50" y="50" width="200" height="140" class="table-box"/>
+  <rect x="50" y="50" width="200" height="30" class="table-header"/>
+  <text x="150" y="70" text-anchor="middle" class="table-text header-text">USERS</text>
+  
+  <text x="60" y="95" class="table-text pk-text">user_id (PK)</text>
+  <text x="60" y="115" class="table-text field-text">username</text>
+  <text x="60" y="135" class="table-text field-text">password_hash</text>
+  <text x="60" y="155" class="table-text field-text">created_at</text>
+  
+  <!-- Documents Table -->
+  <rect x="300" y="50" width="200" height="200" class="table-box"/>
+  <rect x="300" y="50" width="200" height="30" class="table-header"/>
+  <text x="400" y="70" text-anchor="middle" class="table-text header-text">DOCUMENTS</text>
+  
+  <text x="310" y="95" class="table-text pk-text">doc_id (PK)</text>
+  <text x="310" y="115" class="table-text fk-text">user_id (FK)</text>
+  <text x="310" y="135" class="table-text field-text">filename</text>
+  <text x="310" y="155" class="table-text field-text">uploaded_on</text>
+  <text x="310" y="175" class="table-text field-text">expiry_date</text>
+  <text x="310" y="195" class="table-text field-text">status</text>
+  <text x="310" y="215" class="table-text field-text">risk_score</text>
+  <text x="310" y="235" class="table-text field-text">contract_name</text>
+  
+  <!-- Chunks Table -->
+  <rect x="550" y="50" width="200" height="180" class="table-box"/>
+  <rect x="550" y="50" width="200" height="30" class="table-header"/>
+  <text x="650" y="70" text-anchor="middle" class="table-text header-text">CHUNKS</text>
+  
+  <text x="560" y="95" class="table-text pk-text">chunk_id (PK)</text>
+  <text x="560" y="115" class="table-text fk-text">doc_id (FK)</text>
+  <text x="560" y="135" class="table-text fk-text">user_id (FK)</text>
+  <text x="560" y="155" class="table-text field-text">text_chunk</text>
+  <text x="560" y="175" class="table-text field-text">embedding</text>
+  <text x="560" y="195" class="table-text field-text">metadata</text>
+  
+  <!-- Relationships -->
+  <!-- Users to Documents -->
+  <line x1="250" y1="120" x2="300" y2="120" class="relationship-line"/>
+  <text x="275" y="115" text-anchor="middle" class="table-text field-text">1:N</text>
+  
+  <!-- Users to Chunks -->
+  <line x1="250" y1="140" x2="550" y2="140" class="relationship-line"/>
+  <text x="400" y="135" text-anchor="middle" class="table-text field-text">1:N</text>
+  
+  <!-- Documents to Chunks -->
+  <line x1="500" y1="150" x2="550" y2="150" class="relationship-line"/>
+  <text x="525" y="145" text-anchor="middle" class="table-text field-text">1:N</text>
+  
+  <!-- Legend -->
+  <text x="50" y="320" class="table-text field-text">Legend:</text>
+  <text x="50" y="340" class="table-text pk-text">PK = Primary Key</text>
+  <text x="50" y="360" class="table-text fk-text">FK = Foreign Key</text>
+  <text x="200" y="340" class="table-text field-text">1:N = One to Many Relationship</text>
+  <text x="200" y="360" class="table-text field-text">pgvector extension used for embeddings</text>
+</svg>
