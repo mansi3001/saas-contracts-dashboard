@@ -1,6 +1,6 @@
-# SaaS Contracts Dashboard
+# SaaS Contracts Dashboard - Frontend
 
-A modern React-based SaaS application for managing contracts with AI-powered insights, built for the UI/UX Developer Assignment.
+A modern React-based frontend for the SaaS Contracts Dashboard with AI-powered contract management and natural language querying.
 
 ## 🚀 Live Demo
 
@@ -8,125 +8,117 @@ A modern React-based SaaS application for managing contracts with AI-powered ins
 
 ## 📋 Features
 
-- **Authentication**: Mock login system with JWT token management
-- **Dashboard**: Comprehensive contracts overview with search and filtering
-- **Contract Details**: Detailed view with clauses, AI insights, and evidence
-- **File Upload**: Drag-and-drop file upload simulation
-- **Responsive Design**: Mobile-first responsive design
-- **State Management**: Context API for global state management
+- **Multi-tenant Authentication** - JWT-based secure login/signup
+- **Document Upload** - Drag & drop support for PDF, TXT, DOCX files
+- **Smart Dashboard** - Contract overview with search and filtering
+- **Contract Details** - AI insights, clauses analysis, and evidence
+- **Natural Language Queries** - Ask questions about contracts
+- **Responsive Design** - Mobile-first responsive design
 
-## 🛠️ Tech Stack Choices
+## 🛠️ Tech Stack
 
-- **Frontend**: React 19 (Functional Components + Hooks)
-- **Styling**: Tailwind CSS 3.x
-- **State Management**: React Context API
+- **Frontend**: React 18 + Hooks
+- **Styling**: Tailwind CSS
+- **State Management**: Context API + localStorage
 - **Routing**: React Router DOM
 - **HTTP Client**: Fetch API
 - **Icons**: Lucide React
-- **Package Manager**: npm
+- **Build Tool**: Create React App
 
-### Why These Choices?
+## 🔧 Environment Setup
 
-- **React 19**: Latest version with modern hooks and performance improvements
-- **Tailwind CSS**: Utility-first approach for rapid development and consistent design
-- **Context API**: Built-in React solution, sufficient for this application's state needs
-- **Functional Components**: Modern React best practices with better performance
+Create `.env` file:
+```bash
+REACT_APP_API_URL=https://contracts-saas-api.onrender.com
+```
 
 ## 🚀 Setup Instructions
 
 ### Prerequisites
-- Node.js (v18 or higher)
-- npm or yarn
+- Node.js 18+
+- npm
 
 ### Installation
 
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/mansi3001/saas-contracts-dashboard.git
-   cd saas-contracts-dashboard
-   ```
-
-2. **Install dependencies**
+1. **Install dependencies**
    ```bash
    npm install
    ```
 
-3. **Start the development server**
+2. **Set environment variables**
+   ```bash
+   cp .env.example .env
+   # Edit .env with your API URL
+   ```
+
+3. **Start development server**
    ```bash
    npm start
    ```
 
-4. **Open your browser**
+4. **Open browser**
    Navigate to `http://localhost:3000`
 
-### Login Credentials
-- **Username**: Any value
-- **Password**: `test123`
+### Usage
+- Sign up with any username/password
+- Upload PDF/TXT/DOCX contracts
+- Browse dashboard and ask questions
 
-## 🔧 Assumptions Made
+## 🏗️ Architecture
 
-### Authentication
-- Mock authentication system (no real backend)
-- Any username accepted, fixed password for demo purposes
-- JWT token stored in localStorage for session persistence
+### Authentication Flow
+- JWT tokens stored in localStorage
+- Automatic token refresh handling
+- Protected routes with auth context
 
-### Data Management
-- Static JSON files for contract data (`public/contracts.json`)
-- No real database or API endpoints
-- File uploads are simulated with timeout delays
-
-### API Simulation
-- 1-3 second upload delay to simulate real network requests
-- Contract details fetched from static JSON files
-
-### Design Decisions
-- Mobile-first responsive design approach
-- Professional SaaS application UI patterns
-- Consistent color scheme with primary blue theme
-- Loading states and error handling for better UX
+### State Management
+- React Context for global auth state
+- Local state for component-specific data
+- API service layer for backend communication
 
 ### File Upload
-- Only accepts PDF, DOC, DOCX, TXT files
-- File validation happens client-side
-- No actual file storage (simulation only)
+- Drag & drop interface
+- File type validation (PDF, DOC, DOCX, TXT)
+- Progress tracking and error handling
 
-### Browser Support
-- Modern browsers (Chrome, Firefox, Safari, Edge)
-- ES6+ features used
+### API Integration
+- RESTful API communication
+- Error handling and loading states
+- Automatic token inclusion in requests
 
 ## 📁 Project Structure
 
 ```
 src/
-├── components/           # Reusable UI components
-│   ├── common/          # Generic components (Modal, etc.)
-│   ├── layout/          # Layout components (Sidebar, Header)
-│   └── ui/              # Specific UI components
-├── context/             # Context providers
+├── components/
+│   ├── common/          # Reusable components
+│   ├── layout/          # Layout components
+│   └── ui/              # UI components
+├── context/             # React Context providers
 ├── pages/               # Page components
-├── services/            # API services
+├── services/            # API service layer
+└── App.js               # Main app component
 ```
-
-## 🧪 Testing
-
-### Test Scenarios
-1. Login with correct/incorrect credentials
-2. Navigate between dashboard and contract details
-3. Search and filter contracts
-4. Upload files (valid/invalid formats)
-5. View contract insights and evidence in contract detail page
-6. Test responsive design on mobile
 
 ## 🚀 Deployment
 
 **Live Demo**: [https://saas-contracts-dashboard-mansi.netlify.app](https://saas-contracts-dashboard-mansi.netlify.app)
 
-Deployed on Netlify. To deploy elsewhere:
-
+### Build for Production
 ```bash
 npm run build
 ```
 
----
+### Deploy to Netlify
+1. Connect GitHub repository
+2. Set build command: `npm run build`
+3. Set publish directory: `build`
+4. Add environment variables in Netlify dashboard
 
-**Note**: This is a demo application built for assignment purposes. Authentication and API endpoints are mocked for demonstration.
+## 🔗 Backend Integration
+
+This frontend connects to the FastAPI backend:
+- **API Base URL**: `https://contracts-saas-api.onrender.com`
+- **Authentication**: JWT Bearer tokens
+- **File Upload**: Multipart form data
+- **Vector Search**: Semantic contract querying
