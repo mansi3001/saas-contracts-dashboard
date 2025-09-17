@@ -17,3 +17,5 @@ services:
         value: "30"
       - key: PYTHONIOENCODING
         value: utf-8
+      - key: ENVIRONMENT
+        value: production

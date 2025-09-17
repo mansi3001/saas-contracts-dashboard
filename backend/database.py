@@ -9,22 +9,27 @@ from datetime import datetime
 import os
 from dotenv import load_dotenv
 
-load_dotenv()
+# Only load .env in development
+if os.getenv("ENVIRONMENT") != "production":
+    load_dotenv()
 
 DATABASE_URL = os.getenv("DATABASE_URL", "sqlite:///./contracts.db")
+print(f"Raw DATABASE_URL: {DATABASE_URL}")
 
 # Clean up DATABASE_URL if it has the variable name prefix
 if DATABASE_URL and DATABASE_URL.startswith("DATABASE_URL="):
     DATABASE_URL = DATABASE_URL.replace("DATABASE_URL=", "")
 
-print(f"DATABASE_URL from env: {DATABASE_URL[:50]}...")
+print(f"Final DATABASE_URL: {DATABASE_URL[:50]}...")
+print(f"All env vars: {list(os.environ.keys())[:10]}")
 try:
     engine = create_engine(DATABASE_URL)
     with engine.connect() as conn:
         conn.execute(text("SELECT 1"))
     print(f"✓ Connected to PostgreSQL")
 except Exception as e:
-    print(f"✗ PostgreSQL failed: {type(e).__name__}: {str(e)[:100]}")
+    print(f"✗ PostgreSQL failed: {type(e).__name__}: {str(e)}")
+    print(f"Full error: {repr(e)}")
     DATABASE_URL = "sqlite:///./contracts.db"
     engine = create_engine(DATABASE_URL)
     print(f"→ Using SQLite fallback")
