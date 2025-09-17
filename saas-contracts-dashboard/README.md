@@ -68,7 +68,6 @@ REACT_APP_API_URL=https://contracts-saas-api.onrender.com
 
 ### Authentication Flow
 - JWT tokens stored in localStorage
-- Automatic token refresh handling
 - Protected routes with auth context
 
 ### State Management

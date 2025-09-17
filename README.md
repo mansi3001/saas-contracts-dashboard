@@ -13,21 +13,14 @@ A modern full-stack SaaS application for contract management with AI-powered ins
 ### Core Functionality
 - **Multi-tenant Authentication** - JWT-based secure user management
 - **Document Upload** - Drag & drop support for PDF, TXT, DOCX files
-- **Smart Document Processing** - Automatic text extraction and chunking
 - **Vector Search** - Semantic search across contract content using embeddings
-- **Natural Language Queries** - AI-powered Q&A over contract documents
+- **Queries** - Q&A over contract documents
 - **Professional Dashboard** - Modern SaaS interface with search and filtering
-
-### AI-Powered Features
-- Contract content analysis and insights
-- Evidence-based query responses with source citations
-- Risk assessment and recommendations
-- Semantic similarity matching for relevant content discovery
 
 ## 🛠️ Technology Stack
 
 ### Frontend
-- **Framework**: React 18 with Hooks
+- **Framework**: React 19 with Hooks
 - **Styling**: Tailwind CSS
 - **State Management**: Context API
 - **Routing**: React Router DOM
@@ -37,8 +30,6 @@ A modern full-stack SaaS application for contract management with AI-powered ins
 - **Framework**: FastAPI (Python)
 - **Database**: SQLite with vector embeddings
 - **Authentication**: JWT with bcrypt hashing
-- **File Processing**: PyPDF2, python-docx
-- **AI/ML**: scikit-learn for vector similarity
 - **Deployment**: Render
 
 ### Architecture
@@ -73,7 +64,7 @@ uvicorn main:app --reload
 1. Sign up with any username/password
 2. Upload PDF, TXT, or DOCX contracts
 3. Browse contracts in the dashboard
-4. Ask natural language questions about your contracts
+4. Ask questions
 5. View detailed contract analysis and insights
 
 ## 📁 Project Structure
@@ -102,13 +93,12 @@ uvicorn main:app --reload
 1. **Authentication** - Sign up or login with any credentials
 2. **Upload Documents** - Drag & drop PDF/TXT/DOCX contract files
 3. **Browse Dashboard** - View contracts with search and filtering
-4. **Contract Details** - View detailed analysis, clauses, and insights
-5. **Ask Questions** - Use natural language to query contract content
-6. **View Results** - Get AI-powered answers with evidence citations
+4. **Contract Details** - View detailed
+5. **Ask Questions** - Query contract content
 
 ## 📊 Database Schema
 
-![Database Schema](database-schema.png)
+![Database Schema](database-er-diagram.png)
 
 ### Tables
 - **Users**: User accounts with authentication
@@ -121,7 +111,6 @@ uvicorn main:app --reload
 - **Frontend**: Netlify (https://saas-contracts-dashboard-mansi.netlify.app)
 - **Backend**: Render (https://contracts-saas-api.onrender.com)
 - **Database**: SQLite with vector embeddings
-- **File Storage**: Server-side temporary processing
 
 ### Deployment Commands
 ```bash
@@ -138,7 +127,6 @@ npm run build
 - **Multi-tenant Architecture**: Complete user data isolation
 - **JWT Authentication**: Secure token-based auth with expiration
 - **Password Security**: bcrypt hashing with salt
-- **Input Validation**: Pydantic models for API validation
 - **CORS Protection**: Configured for frontend domain
 
 ### Architecture Patterns
@@ -167,13 +155,3 @@ Complete API documentation available at:
 1. Clone repository
 2. Set up frontend and backend (see Quick Start)
 3. Use sample contracts for testing
-4. Access API docs at `http://localhost:8000/docs`
-
-### Testing
-- Frontend: Manual testing with sample data
-- Backend: API testing via Swagger UI
-- Integration: End-to-end user workflows
-
----
-
-**Built with ❤️ for modern contract management**

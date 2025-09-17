@@ -22,9 +22,7 @@ A FastAPI-based backend for the SaaS Contracts Dashboard with AI-powered contrac
 - **Database**: SQLite with vector storage
 - **Authentication**: JWT tokens with bcrypt hashing
 - **File Processing**: PyPDF2, python-docx
-- **Vector Search**: scikit-learn cosine similarity
 - **Deployment**: Render
-- **Documentation**: Automatic OpenAPI/Swagger
 
 ## 🔧 Environment Setup
 
@@ -65,9 +63,6 @@ ACCESS_TOKEN_EXPIRE_MINUTES=30
    uvicorn main:app --reload
    ```
 
-5. **Access API**
-   - API: `http://localhost:8000`
-   - Docs: `http://localhost:8000/docs`
 
 ## 📊 Database Schema
 
@@ -98,38 +93,12 @@ ACCESS_TOKEN_EXPIRE_MINUTES=30
 
 ## 🔌 API Endpoints
 
-### Authentication
 - `POST /signup` - User registration
 - `POST /login` - User authentication
-
-### Contracts
 - `GET /contracts` - List user contracts
 - `GET /contracts/{doc_id}` - Get contract details
 - `POST /upload` - Upload contract file
-
-### AI Features
 - `POST /ask` - Natural language contract queries
-
-### System
-- `GET /` - Health check
-- `GET /health` - System status
-
-## 🧠 AI Features
-
-### Document Processing
-- Automatic text extraction from PDF, DOC, DOCX files
-- Smart chunking for better search performance
-- Metadata extraction and storage
-
-### Vector Search
-- Semantic embeddings for contract content
-- Cosine similarity matching
-- Relevance scoring for query results
-
-### Natural Language Queries
-- Question answering over contract content
-- Evidence-based responses with source citations
-- Multi-document search capabilities
 
 ## 🚀 Deployment
 
@@ -148,14 +117,14 @@ services:
 Set in Render dashboard:
 - `DATABASE_URL`: SQLite database path
 - `SECRET_KEY`: JWT signing key
-- `ENVIRONMENT`: production
+- `ALGORITHM`: algorithm
+- `ACCESS_TOKEN_EXPIRE_MINUTES`: minutes
 
 ## 🔒 Security Features
 
 - **Password Hashing**: bcrypt with salt
 - **JWT Tokens**: Secure authentication
 - **Multi-tenant Isolation**: User data separation
-- **Input Validation**: Pydantic models
 - **CORS Protection**: Configured origins
 
 ## 📈 Performance
@@ -164,21 +133,6 @@ Set in Render dashboard:
 - **Database Optimization**: Indexed queries
 - **Vector Caching**: Efficient similarity search
 - **File Streaming**: Memory-efficient uploads
-
-## 🧪 Testing
-
-### Manual Testing
-```bash
-# Test signup
-curl -X POST "http://localhost:8000/signup" \
-  -H "Content-Type: application/json" \
-  -d '{"username": "test", "password": "test123"}'
-
-# Test file upload
-curl -X POST "http://localhost:8000/upload" \
-  -H "Authorization: Bearer YOUR_TOKEN" \
-  -F "file=@contract.pdf"
-```
 
 ### API Documentation
 Visit `/docs` for interactive API testing with Swagger UI.
