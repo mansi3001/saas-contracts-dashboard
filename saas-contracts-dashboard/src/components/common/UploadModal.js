@@ -215,8 +215,13 @@ const UploadModal = ({ isOpen, onClose }) => {
                 // Clear files and close modal
                 setFiles([]);
                 onClose();
-                // Force page refresh to show new contracts
-                window.location.reload();
+                // Trigger parent component to refresh data instead of full page reload
+                if (window.location.pathname === '/dashboard') {
+                  // Already on dashboard, just close modal - parent will refresh
+                } else {
+                  // Navigate to dashboard
+                  window.location.href = '/dashboard';
+                }
               }}
               className="btn-primary"
               disabled={files.some(f => f.status === 'uploading') || files.length === 0}
