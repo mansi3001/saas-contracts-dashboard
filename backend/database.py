@@ -2,7 +2,6 @@ from sqlalchemy import create_engine, Column, Integer, String, DateTime, Text, F
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker, relationship
 from sqlalchemy.dialects.postgresql import UUID
-from sqlalchemy import text
 # from pgvector.sqlalchemy import Vector
 # Using TEXT for embeddings instead of Vector for deployment compatibility
 import uuid
@@ -12,7 +11,11 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-DATABASE_URL = os.getenv("DATABASE_URL")
+DATABASE_URL = os.getenv("DATABASE_URL", "sqlite:///./contracts.db")
+
+# Clean up DATABASE_URL if it has the variable name prefix
+if DATABASE_URL and DATABASE_URL.startswith("DATABASE_URL="):
+    DATABASE_URL = DATABASE_URL.replace("DATABASE_URL=", "")
 
 engine = create_engine(DATABASE_URL)
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
@@ -66,12 +69,4 @@ def get_db():
         db.close()
 
 def create_tables():
-    # Enable pgvector extension
-    try:
-        with engine.connect() as conn:
-            conn.execute(text("CREATE EXTENSION IF NOT EXISTS vector"))
-            conn.commit()
-    except Exception as e:
-        print(f"pgvector extension error (may already exist): {e}")
-    
     Base.metadata.create_all(bind=engine)
