@@ -2,6 +2,7 @@ from sqlalchemy import create_engine, Column, Integer, String, DateTime, Text, F
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker, relationship
 from sqlalchemy.dialects.postgresql import UUID
+from sqlalchemy import text
 # from pgvector.sqlalchemy import Vector
 # Using TEXT for embeddings instead of Vector for deployment compatibility
 import uuid
@@ -65,4 +66,12 @@ def get_db():
         db.close()
 
 def create_tables():
+    # Enable pgvector extension
+    try:
+        with engine.connect() as conn:
+            conn.execute(text("CREATE EXTENSION IF NOT EXISTS vector"))
+            conn.commit()
+    except Exception as e:
+        print(f"pgvector extension error (may already exist): {e}")
+    
     Base.metadata.create_all(bind=engine)
