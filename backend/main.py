@@ -15,12 +15,16 @@ import io
 from database import get_db, create_tables, User, Document, Chunk
 from auth import get_password_hash, verify_password, create_access_token, get_current_user
 from pydantic import BaseModel
+import os
 
 app = FastAPI(title="Contracts SaaS API")
 
+# CORS origins from environment or default
+allowed_origins = os.getenv("ALLOWED_ORIGINS", "*").split(",")
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=allowed_origins,
     allow_credentials=True,
     allow_methods=["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allow_headers=["*"],
@@ -107,7 +111,7 @@ async def signup(user: UserCreate, db: Session = Depends(get_db)):
     db.commit()
     db.refresh(db_user)
     
-    access_token_expires = timedelta(minutes=30)
+    access_token_expires = timedelta(minutes=int(os.getenv("ACCESS_TOKEN_EXPIRE_MINUTES", "30")))
     access_token = create_access_token(
         data={"sub": user.username}, expires_delta=access_token_expires
     )
@@ -122,7 +126,7 @@ async def login(user: UserLogin, db: Session = Depends(get_db)):
             detail="Incorrect username or password"
         )
     
-    access_token_expires = timedelta(minutes=30)
+    access_token_expires = timedelta(minutes=int(os.getenv("ACCESS_TOKEN_EXPIRE_MINUTES", "30")))
     access_token = create_access_token(
         data={"sub": user.username}, expires_delta=access_token_expires
     )
@@ -297,4 +301,5 @@ async def ask_question(
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+    port = int(os.getenv("PORT", "8000"))
+    uvicorn.run(app, host="0.0.0.0", port=port)
