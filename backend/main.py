@@ -19,16 +19,17 @@ import os
 
 app = FastAPI(title="Contracts SaaS API")
 
-# CORS origins from environment or default
-allowed_origins = os.getenv("ALLOWED_ORIGINS", "*").split(",")
-
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=allowed_origins,
+    allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allow_headers=["*"],
 )
+
+@app.get("/")
+async def root():
+    return {"message": "Contracts SaaS API is running", "status": "healthy"}
 
 # Pydantic models
 class UserCreate(BaseModel):
@@ -98,6 +99,10 @@ async def startup_event():
     except Exception as e:
         print(f"⚠ Database connection failed: {e}")
         print("App will continue without database initialization")
+
+@app.get("/health")
+async def health_check():
+    return {"status": "healthy", "timestamp": datetime.utcnow().isoformat()}
 
 @app.post("/signup", response_model=Token)
 async def signup(user: UserCreate, db: Session = Depends(get_db)):
