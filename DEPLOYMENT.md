@@ -24,7 +24,7 @@ Complete deployment guide for the SaaS Contracts Dashboard.
 3. **Get Connection String**
    - Go to Settings > Database
    - Copy the connection string
-   - Format: `postgresql://postgres:[password]@[host]:5432/postgres`
+   - Format: `postgresql://postgres:[password]@[host]:6543/postgres`
 
 ## Backend Deployment (Render)
 

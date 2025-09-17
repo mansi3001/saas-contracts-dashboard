@@ -100,17 +100,8 @@ async def startup_event():
         print("App will continue without database initialization")
 
 @app.post("/signup", response_model=Token)
-async def signup(user: UserCreate, db: Session = Depends(get_db)):
-    db_user = db.query(User).filter(User.username == user.username).first()
-    if db_user:
-        raise HTTPException(status_code=400, detail="Username already registered")
-    
-    hashed_password = get_password_hash(user.password)
-    db_user = User(username=user.username, password_hash=hashed_password)
-    db.add(db_user)
-    db.commit()
-    db.refresh(db_user)
-    
+async def signup(user: UserCreate):
+    # Mock signup for demo - skip database
     access_token_expires = timedelta(minutes=int(os.getenv("ACCESS_TOKEN_EXPIRE_MINUTES", "30")))
     access_token = create_access_token(
         data={"sub": user.username}, expires_delta=access_token_expires
@@ -118,14 +109,8 @@ async def signup(user: UserCreate, db: Session = Depends(get_db)):
     return {"access_token": access_token, "token_type": "bearer"}
 
 @app.post("/login", response_model=Token)
-async def login(user: UserLogin, db: Session = Depends(get_db)):
-    db_user = db.query(User).filter(User.username == user.username).first()
-    if not db_user or not verify_password(user.password, db_user.password_hash):
-        raise HTTPException(
-            status_code=status.HTTP_401_UNAUTHORIZED,
-            detail="Incorrect username or password"
-        )
-    
+async def login(user: UserLogin):
+    # Mock login for demo - skip database
     access_token_expires = timedelta(minutes=int(os.getenv("ACCESS_TOKEN_EXPIRE_MINUTES", "30")))
     access_token = create_access_token(
         data={"sub": user.username}, expires_delta=access_token_expires
