@@ -22,10 +22,12 @@ try:
     # Test connection
     with engine.connect() as conn:
         conn.execute(text("SELECT 1"))
+    print(f"Successfully connected to database: {DATABASE_URL[:20]}...")
 except Exception as e:
     print(f"PostgreSQL connection failed: {e}. Falling back to SQLite.")
     DATABASE_URL = "sqlite:///./contracts.db"
     engine = create_engine(DATABASE_URL)
+    print(f"Using SQLite fallback: {DATABASE_URL}")
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 Base = declarative_base()
 

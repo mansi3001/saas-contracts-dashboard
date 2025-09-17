@@ -101,6 +101,9 @@ async def startup_event():
 
 @app.post("/signup", response_model=Token)
 async def signup(user: UserCreate, db: Session = Depends(get_db)):
+    from database import DATABASE_URL
+    print(f'Signup for: {user.username}, DB: {DATABASE_URL[:30]}...')
+    
     db_user = db.query(User).filter(User.username == user.username).first()
     if db_user:
         raise HTTPException(status_code=400, detail="Username already registered")
@@ -111,6 +114,7 @@ async def signup(user: UserCreate, db: Session = Depends(get_db)):
     db.commit()
     db.refresh(db_user)
     
+    print(f'User created: {db_user.user_id}')
     access_token_expires = timedelta(minutes=int(os.getenv("ACCESS_TOKEN_EXPIRE_MINUTES", "30")))
     access_token = create_access_token(
         data={"sub": user.username}, expires_delta=access_token_expires
