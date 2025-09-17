@@ -1,4 +1,4 @@
-from sqlalchemy import create_engine, Column, Integer, String, DateTime, Text, Float, ForeignKey
+from sqlalchemy import create_engine, Column, Integer, String, DateTime, Text, Float, ForeignKey, text
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker, relationship
 from sqlalchemy.dialects.postgresql import UUID
@@ -17,7 +17,15 @@ DATABASE_URL = os.getenv("DATABASE_URL", "sqlite:///./contracts.db")
 if DATABASE_URL and DATABASE_URL.startswith("DATABASE_URL="):
     DATABASE_URL = DATABASE_URL.replace("DATABASE_URL=", "")
 
-engine = create_engine(DATABASE_URL)
+try:
+    engine = create_engine(DATABASE_URL)
+    # Test connection
+    with engine.connect() as conn:
+        conn.execute(text("SELECT 1"))
+except Exception as e:
+    print(f"PostgreSQL connection failed: {e}. Falling back to SQLite.")
+    DATABASE_URL = "sqlite:///./contracts.db"
+    engine = create_engine(DATABASE_URL)
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 Base = declarative_base()
 
