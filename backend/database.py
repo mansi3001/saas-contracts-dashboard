@@ -17,17 +17,12 @@ DATABASE_URL = os.getenv("DATABASE_URL", "sqlite:///./contracts.db")
 if DATABASE_URL and DATABASE_URL.startswith("DATABASE_URL="):
     DATABASE_URL = DATABASE_URL.replace("DATABASE_URL=", "")
 
-try:
-    engine = create_engine(DATABASE_URL)
-    # Test connection
-    with engine.connect() as conn:
-        conn.execute(text("SELECT 1"))
-    print(f"Successfully connected to database: {DATABASE_URL[:20]}...")
-except Exception as e:
-    print(f"PostgreSQL connection failed: {e}. Falling back to SQLite.")
-    DATABASE_URL = "sqlite:///./contracts.db"
-    engine = create_engine(DATABASE_URL)
-    print(f"Using SQLite fallback: {DATABASE_URL}")
+print(f"Attempting to connect to: {DATABASE_URL[:50]}...")
+engine = create_engine(DATABASE_URL)
+# Test connection
+with engine.connect() as conn:
+    conn.execute(text("SELECT 1"))
+print(f"Successfully connected to PostgreSQL")
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 Base = declarative_base()
 
