@@ -1,0 +1,202 @@
+[
+  {
+    "id": "c1",
+    "name": "MSA 2025",
+    "parties": "Microsoft & ABC Corp",
+    "expiry": "2025-12-31",
+    "status": "Active",
+    "risk": "Medium"
+  },
+  {
+    "id": "c2",
+    "name": "Network Services Agreement",
+    "parties": "TelNet & ABC Corp",
+    "expiry": "2025-10-10",
+    "status": "Renewal Due",
+    "risk": "High"
+  },
+  {
+    "id": "c3",
+    "name": "Cloud Infrastructure Contract",
+    "parties": "AWS & TechCorp",
+    "expiry": "2025-06-15",
+    "status": "Expired",
+    "risk": "Low"
+  },
+  {
+    "id": "c4",
+    "name": "Software License Agreement",
+    "parties": "Adobe & CreativeCorp",
+    "expiry": "2026-03-20",
+    "status": "Active",
+    "risk": "Low"
+  },
+  {
+    "id": "c5",
+    "name": "Data Processing Agreement",
+    "parties": "Salesforce & DataCorp",
+    "expiry": "2025-08-30",
+    "status": "Active",
+    "risk": "High"
+  },
+  {
+    "id": "c6",
+    "name": "Enterprise Support Contract",
+    "parties": "Oracle & FinanceCorp",
+    "expiry": "2025-12-15",
+    "status": "Renewal Due",
+    "risk": "Medium"
+  },
+  {
+    "id": "c7",
+    "name": "SaaS Subscription Agreement",
+    "parties": "Slack & TeamCorp",
+    "expiry": "2025-05-22",
+    "status": "Active",
+    "risk": "Low"
+  },
+  {
+    "id": "c8",
+    "name": "Security Services Contract",
+    "parties": "CrowdStrike & SecureCorp",
+    "expiry": "2025-03-10",
+    "status": "Expired",
+    "risk": "High"
+  },
+  {
+    "id": "c9",
+    "name": "Marketing Automation License",
+    "parties": "HubSpot & MarketCorp",
+    "expiry": "2025-11-30",
+    "status": "Active",
+    "risk": "Low"
+  },
+  {
+    "id": "c10",
+    "name": "Database Management Agreement",
+    "parties": "MongoDB & DataTech",
+    "expiry": "2025-01-15",
+    "status": "Renewal Due",
+    "risk": "Medium"
+  },
+  {
+    "id": "c11",
+    "name": "Analytics Platform Contract",
+    "parties": "Tableau & AnalyticsCorp",
+    "expiry": "2026-07-20",
+    "status": "Active",
+    "risk": "Low"
+  },
+  {
+    "id": "c12",
+    "name": "Communication Services MSA",
+    "parties": "Zoom & CommCorp",
+    "expiry": "2025-09-30",
+    "status": "Expired",
+    "risk": "Medium"
+  },
+  {
+    "id": "c13",
+    "name": "DevOps Platform Agreement",
+    "parties": "GitLab & DevCorp",
+    "expiry": "2025-04-18",
+    "status": "Active",
+    "risk": "High"
+  },
+  {
+    "id": "c14",
+    "name": "Identity Management Contract",
+    "parties": "Okta & IdentityCorp",
+    "expiry": "2025-02-28",
+    "status": "Renewal Due",
+    "risk": "High"
+  },
+  {
+    "id": "c15",
+    "name": "Content Delivery Network",
+    "parties": "Cloudflare & WebCorp",
+    "expiry": "2026-01-10",
+    "status": "Active",
+    "risk": "Low"
+  },
+  {
+    "id": "c16",
+    "name": "Project Management License",
+    "parties": "Atlassian & ProjectCorp",
+    "expiry": "2025-11-25",
+    "status": "Expired",
+    "risk": "Medium"
+  },
+  {
+    "id": "c17",
+    "name": "Email Marketing Platform",
+    "parties": "Mailchimp & EmailCorp",
+    "expiry": "2025-09-15",
+    "status": "Active",
+    "risk": "Low"
+  },
+  {
+    "id": "c18",
+    "name": "Backup & Recovery Services",
+    "parties": "Veeam & BackupCorp",
+    "expiry": "2025-03-05",
+    "status": "Renewal Due",
+    "risk": "High"
+  },
+  {
+    "id": "c19",
+    "name": "API Management Contract",
+    "parties": "Kong & APICorp",
+    "expiry": "2026-05-12",
+    "status": "Active",
+    "risk": "Medium"
+  },
+  {
+    "id": "c20",
+    "name": "Monitoring & Observability",
+    "parties": "Datadog & MonitorCorp",
+    "expiry": "2025-08-20",
+    "status": "Expired",
+    "risk": "Low"
+  },
+  {
+    "id": "c21",
+    "name": "HR Management System",
+    "parties": "Workday & HRCorp",
+    "expiry": "2025-06-30",
+    "status": "Active",
+    "risk": "Medium"
+  },
+  {
+    "id": "c22",
+    "name": "Customer Support Platform",
+    "parties": "Zendesk & SupportCorp",
+    "expiry": "2025-01-08",
+    "status": "Renewal Due",
+    "risk": "Low"
+  },
+  {
+    "id": "c23",
+    "name": "Business Intelligence License",
+    "parties": "Power BI & BICorp",
+    "expiry": "2026-04-15",
+    "status": "Active",
+    "risk": "Low"
+  },
+  {
+    "id": "c24",
+    "name": "Container Orchestration",
+    "parties": "Docker & ContainerCorp",
+    "expiry": "2025-07-12",
+    "status": "Expired",
+    "risk": "High"
+  },
+  {
+    "id": "c25",
+    "name": "Financial Management Software",
+    "parties": "QuickBooks & FinTech",
+    "expiry": "2025-12-01",
+    "status": "Active",
+    "risk": "Medium"
+  }
+]
